@@ -16,6 +16,8 @@ public class Labirinto {
     Fila q = new Fila(50);
     Fila moveFila = new Fila(50);
     
+    
+    int aumentaComando = 0;
     private boolean ganhouJogo = false;
     private String[][] guardaLabirinto;
     private int[] entrada = new int[2];
@@ -137,7 +139,8 @@ public class Labirinto {
                     String[] auxValores = q.espiar().split(",");
                     int linha = Integer.parseInt(auxValores[0]);
                     int coluna = Integer.parseInt(auxValores[1]);
-                    System.out.println("Comando " + q.tamanho() + ": " + moveFila.espiar());
+                    aumentaComando++;
+                    System.out.println("Comando " + aumentaComando+ ": " + moveFila.espiar());
                     prenchePosicao(linha, coluna);
                     moveFila.defenfileira();
                     q.defenfileira();
