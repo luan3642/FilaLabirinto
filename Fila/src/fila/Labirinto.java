@@ -58,7 +58,7 @@ public class Labirinto {
             }
         }
         
-        q.setTamanho(0);
+        q.defenfileira();
     }
     
     public void imprimeComandos() {
@@ -145,7 +145,11 @@ public class Labirinto {
 //                while (!q.empty()) {
 //                    q.remove();
 //                }
-                limpaLabirinto();
+                
+                while (!q.empty()) {                    
+                    limpaLabirinto();
+                }
+                
 //                imprimeComandos();
 //                imprimeLabirinto();
                 break;
