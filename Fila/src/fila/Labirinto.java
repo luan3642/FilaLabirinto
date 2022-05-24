@@ -104,22 +104,16 @@ public class Labirinto {
         
         switch (jogada) {
             case "direita":
-//                if (!(guardaLabirinto[posicaoAtual[0]][posicaoAtual[1] + 1].equals("#"))) {
-                posicaoAtual[1] = posicaoAtual[1] + 1;
-//                this.posicaoAtual[0] = 1;
-//                this.posicaoAtual[1] = 1;
-                
-                q.enfileira(Integer.toString(posicaoAtual[0]) + Integer.toString(posicaoAtual[1]));
+                posicaoAtual[1] = posicaoAtual[1] + 1;                
+                q.enfileira(Integer.toString(posicaoAtual[0]) + "," + Integer.toString(posicaoAtual[1]));
                 moveFila.enfileira("direita");
-//                imprimeComandos();
-//                }
                 break;
             case "esquerda":
-//                if (!(guardaLabirinto[posicaoAtual[0]][posicaoAtual[1] - 1].equals("#"))) {
+
                 posicaoAtual[1] = posicaoAtual[1] - 1;
                 q.enfileira(Integer.toString(posicaoAtual[0]) + "," + Integer.toString(posicaoAtual[1]));
                 moveFila.enfileira("esquerda");
-//                imprimeComandos();
+
                 break;
             case "cima":
 //                if (!(guardaLabirinto[posicaoAtual[0] - 1][posicaoAtual[1]].equals("#"))) {;
