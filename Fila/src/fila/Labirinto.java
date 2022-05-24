@@ -46,6 +46,12 @@ public class Labirinto {
             imprimeLabirinto();
         } else if (guardaLabirinto[linha][coluna].equals("E")) {
             System.out.println("Movimento inválido, tente novamente");
+        } else{
+            System.err.println("Movimento invalido, PROGRAMARA ENCERRADO");
+        
+//            System.out.println("");
+//            comecaJogada();
+            
         }
     }
     
@@ -80,7 +86,11 @@ public class Labirinto {
     }
     
     public void comecaJogada() {
+        
+        // linha, posicao 0 é linha
         this.posicaoAtual[0] = 1;
+        
+        //coluna, posicao 1 é coluna
         this.posicaoAtual[1] = 1;
         while (!ganhouJogo) {
             imprimeComandos();
@@ -129,7 +139,7 @@ public class Labirinto {
                 break;
             
             case "comecar":
-                while (!q.empty()) { // isso ta errado
+                while (!q.empty()) { 
                     String[] auxValores = q.espiar().split(",");
                     int linha = Integer.parseInt(auxValores[0]);
                     int coluna = Integer.parseInt(auxValores[1]);
