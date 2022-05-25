@@ -10,29 +10,28 @@ import java.util.Queue;
 import java.util.Scanner;
 
 public class Labirinto {
-    
+
     Scanner scan = new Scanner(System.in);
-    
+
     Fila q = new Fila(50);
     Fila moveFila = new Fila(50);
-    
-    
+
     int aumentaComando = 0;
     private boolean ganhouJogo = false;
     private String[][] guardaLabirinto;
     private int[] entrada = new int[2];
-    
+
     private int[] saida = new int[2];
-    
+
     private int[] posicaoAtual = new int[2];
 
 //    Queue<String> q, moveFila = new LinkedList();
     public Labirinto(String[][] guardaLabirinto) {
         this.guardaLabirinto = guardaLabirinto;
     }
-    
+
     public void imprimeLabirinto() {
-        
+
         for (int l = 0; l < guardaLabirinto.length; l++) {
             for (int c = 0; c < guardaLabirinto[0].length; c++) {
                 System.out.print(guardaLabirinto[l][c] + " "); //imprime caracter a caracter
@@ -40,23 +39,24 @@ public class Labirinto {
             System.out.println(" "); //muda de linha
         }
     }
-    
+
     public void prenchePosicao(int linha, int coluna) {
-        
+
         if (!(guardaLabirinto[linha][coluna].equals("#")) && !(guardaLabirinto[linha][coluna].equals("E"))) {
             guardaLabirinto[linha][coluna] = "?";
             imprimeLabirinto();
         } else if (guardaLabirinto[linha][coluna].equals("E")) {
             System.out.println("Movimento inválido, tente novamente");
-        } else{
+        } else if (guardaLabirinto[linha][coluna].equals("S")) {
+            System.out.println("Você ganhou");
+        } else {
             System.err.println("Movimento invalido, PROGRAMARA ENCERRADO");
-        
+
 //            System.out.println("");
 //            comecaJogada();
-            
         }
     }
-    
+
     public void limpaLabirinto() {
         for (int l = 0; l < guardaLabirinto.length; l++) {
             for (int c = 0; c < guardaLabirinto[0].length; c++) {
@@ -65,12 +65,12 @@ public class Labirinto {
                 }
             }
         }
-        
+
         q.defenfileira();
     }
-    
+
     public void imprimeComandos() {
-        
+
         imprimeLabirinto();
         System.out.println("");
         System.out.println("Programe seus passos ate para chegar ate o 'E' ");
@@ -84,14 +84,14 @@ public class Labirinto {
         System.out.println("baixo");
         System.out.println("começar");
         System.out.println("reiniciar");
-        
+
     }
-    
+
     public void comecaJogada() {
-        
+
         // linha, posicao 0 é linha
         this.posicaoAtual[0] = 1;
-        
+
         //coluna, posicao 1 é coluna
         this.posicaoAtual[1] = 1;
         while (!ganhouJogo) {
@@ -101,12 +101,12 @@ public class Labirinto {
             movimenta(jogada);
         }
     }
-    
+
     public void movimenta(String jogada) {
-        
+
         switch (jogada) {
             case "direita":
-                posicaoAtual[1] = posicaoAtual[1] + 1;                
+                posicaoAtual[1] = posicaoAtual[1] + 1;
                 q.enfileira(Integer.toString(posicaoAtual[0]) + "," + Integer.toString(posicaoAtual[1]));
                 moveFila.enfileira("direita");
                 break;
@@ -133,36 +133,36 @@ public class Labirinto {
 //                imprimeComandos();
 //                }
                 break;
-            
+
             case "comecar":
-                while (!q.empty()) { 
+                while (!q.empty()) {
                     String[] auxValores = q.espiar().split(",");
                     int linha = Integer.parseInt(auxValores[0]);
                     int coluna = Integer.parseInt(auxValores[1]);
                     aumentaComando++;
-                    System.out.println("Comando " + aumentaComando+ ": " + moveFila.espiar());
+                    System.out.println("Comando " + aumentaComando + ": " + moveFila.espiar());
                     prenchePosicao(linha, coluna);
                     moveFila.defenfileira();
                     q.defenfileira();
-                    
                 }
+
                 this.ganhouJogo = true;
                 break;
             case "reiniciar":
 //                while (!q.empty()) {
 //                    q.remove();
 //                }
-                
-                while (!q.empty()) {                    
+
+                while (!q.empty()) {
                     limpaLabirinto();
                 }
-                
+
 //                imprimeComandos();
 //                imprimeLabirinto();
                 break;
             default:
-                System.err.println("ERRO");
+                System.err.println("Movimento invalido, tente novamente!");
         }
     }
-    
+
 }
